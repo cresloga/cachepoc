@@ -1,6 +1,8 @@
 package com.poc.cache.entity;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable{
 
     private String isbn;
     private String title;
