@@ -1,0 +1,10 @@
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\repository\BookRepository.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\repository\SimpleBookRepository.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\config\LocalCacheConfig.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\entity\Book.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\Application.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\controller\SimpleController.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\config\MemcachedConfig.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\config\AppConfig.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\entity\Plan.java
+C:\Users\admin\Documents\Personal\workspace\spring-boot\cachepoc\src\main\java\com\poc\cache\service\SimpleService.java
