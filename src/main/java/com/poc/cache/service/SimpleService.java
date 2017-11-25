@@ -21,6 +21,6 @@ public class SimpleService {
 	public String getMyResponse() {
 		System.out.println("Printing from Service");
 		logger.info("in Service");
-		return bookRepository.getByIsbn("some book").getTitle();
+		return bookRepository.getByIsbn("1234").getTitle();
 	}
 }
