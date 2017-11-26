@@ -68,7 +68,7 @@ public class MemcachedConfig extends CachingConfigurerSupport {
     @DependsOn("cacheBase")
     public CacheFactory cacheFactory() {
         CacheFactory cacheFactory = new CacheFactory();
-        cacheFactory.setCacheName("books");
+        cacheFactory.setCacheName("plans");
         cacheFactory.setCacheClientFactory(new MemcacheClientFactoryImpl());
 
         String cacheServers = CACHE_SERVERS;

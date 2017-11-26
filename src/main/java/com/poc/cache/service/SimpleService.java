@@ -6,21 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import com.poc.cache.repository.BookRepository;
-import com.poc.cache.repository.SimpleBookRepository;
+import com.poc.cache.entity.Plan;
+import com.poc.cache.repository.PlanRepository;
+
 
 @Service
 public class SimpleService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SimpleService.class);
 	
-	@Autowired
-	private BookRepository bookRepository;
-
 	
-	public String getMyResponse() {
-		System.out.println("Printing from Service");
-		logger.info("in Service");
-		return bookRepository.getByIsbn("1234").getTitle();
+	
+	@Autowired
+	private PlanRepository planRepository;
+
+		
+	@Cacheable(value="plans", key="#voice.concat('|').concat(#data).concat('|').concat(#traveler)" )
+	public Plan getMyPlan(String voice, String data, String traveler) {		
+		logger.info("Invoked SimpleService.getMyPlan");
+		return planRepository.findByVoiceAndDataAndTraveler(voice, data, traveler);
 	}
 }

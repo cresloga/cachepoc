@@ -14,6 +14,6 @@ public class LocalCacheConfig {
 
     @Bean
     public CacheManager concurrentMapCacheManager() {
-        return new ConcurrentMapCacheManager("books");
+        return new ConcurrentMapCacheManager("plans");
     }
 }
