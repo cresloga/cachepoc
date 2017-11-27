@@ -29,11 +29,25 @@ public class SimpleController {
     	return "Welcome to Cache POC Test";
     }
     
-    @RequestMapping(method=RequestMethod.POST, value="/more")
-    @ResponseBody Plan getMoreDetails(@RequestBody Plan plan) {
+    @RequestMapping(method=RequestMethod.POST, value="/plan")
+    @ResponseBody Plan getPlan(@RequestBody Plan plan) {
     	//return bookRepository.getByIsbn("new book").getTitle();
-    	logger.info("Invoked SimpleController.getMoreDetails :"+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
-    	return service.getMyPlan(plan.getVoice(), plan.getData(), plan.getTraveler());
+    	logger.info("Invoked SimpleController.getPlan :"+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
+    	return service.getPlan(plan.getVoice(), plan.getData(), plan.getTraveler());
+    }
+    
+    @RequestMapping(method=RequestMethod.PUT, value="/plan")
+    @ResponseBody Plan updatePlan(@RequestBody Plan plan) {
+    	//return bookRepository.getByIsbn("new book").getTitle();
+    	logger.info("Invoked SimpleController.updatePlan :"+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
+    	return service.updatePlan(plan);
+    }
+    
+    @RequestMapping(method=RequestMethod.DELETE, value="/plan")
+    void deletePlan(@RequestBody Plan plan) {
+    	//return bookRepository.getByIsbn("new book").getTitle();
+    	logger.info("Invoked SimpleController.deletePlan :"+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
+    	service.deletePlan(plan);
     }
 
 }

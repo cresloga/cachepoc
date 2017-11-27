@@ -3,6 +3,7 @@ package com.poc.cache.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -22,8 +23,22 @@ public class SimpleService {
 
 		
 	@Cacheable(value="plans", key="#voice.concat('|').concat(#data).concat('|').concat(#traveler)" )
-	public Plan getMyPlan(String voice, String data, String traveler) {		
-		logger.info("Invoked SimpleService.getMyPlan");
+	public Plan getPlan(String voice, String data, String traveler) {		
+		logger.info("Invoked SimpleService.getPlan");
 		return planRepository.findByVoiceAndDataAndTraveler(voice, data, traveler);
+	}
+	
+	@CacheEvict(value="plans", key="#plan.voice.concat('|').concat(#plan.data).concat('|').concat(#plan.traveler)" )
+	public Plan updatePlan(Plan plan) {		
+		logger.info("Invoked SimpleService.updatePlan");
+		plan.setId((planRepository.findByVoiceAndDataAndTraveler(plan.getVoice(), plan.getData(), plan.getTraveler()).getId()));
+		return planRepository.save(plan);
+	}
+	
+	@CacheEvict(value="plans", key="#plan.voice.concat('|').concat(#plan.data).concat('|').concat(#plan.traveler)" )
+	public void deletePlan(Plan plan) {		
+		logger.info("Invoked SimpleService.deletePlan");
+		plan.setId((planRepository.findByVoiceAndDataAndTraveler(plan.getVoice(), plan.getData(), plan.getTraveler()).getId()));
+		planRepository.delete(plan);
 	}
 }
