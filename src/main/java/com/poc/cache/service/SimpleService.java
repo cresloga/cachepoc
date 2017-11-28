@@ -31,14 +31,12 @@ public class SimpleService {
 	@CacheEvict(value="plans", key="#plan.voice.concat('|').concat(#plan.data).concat('|').concat(#plan.traveler)" )
 	public Plan updatePlan(Plan plan) {		
 		logger.info("Invoked SimpleService.updatePlan");
-		plan.setId((planRepository.findByVoiceAndDataAndTraveler(plan.getVoice(), plan.getData(), plan.getTraveler()).getId()));
-		return planRepository.save(plan);
+		return planRepository.save(plan);		
 	}
 	
 	@CacheEvict(value="plans", key="#plan.voice.concat('|').concat(#plan.data).concat('|').concat(#plan.traveler)" )
-	public void deletePlan(Plan plan) {		
-		logger.info("Invoked SimpleService.deletePlan");
-		plan.setId((planRepository.findByVoiceAndDataAndTraveler(plan.getVoice(), plan.getData(), plan.getTraveler()).getId()));
-		planRepository.delete(plan);
+	public void deletePlan(Integer id) {		
+		logger.info("Invoked SimpleService.deletePlan");		
+		planRepository.delete(id);
 	}
 }
