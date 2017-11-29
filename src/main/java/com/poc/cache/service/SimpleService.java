@@ -20,9 +20,14 @@ public class SimpleService {
 	
 	@Autowired
 	private PlanRepository planRepository;
+	
+	public Plan addPlan(Plan plan) {		
+		logger.info("Invoked SimpleService.addPlan");
+		return planRepository.save(plan);		
+	}
 
 		
-	@Cacheable(value="plans", key="#voice.concat('|').concat(#data).concat('|').concat(#traveler)" )
+	@Cacheable(value="plans", key="#voice.concat('|').concat(#data).concat('|').concat(#traveler)", unless="#result == null")
 	public Plan getPlan(String voice, String data, String traveler) {		
 		logger.info("Invoked SimpleService.getPlan");
 		return planRepository.findByVoiceAndDataAndTraveler(voice, data, traveler);
@@ -35,8 +40,8 @@ public class SimpleService {
 	}
 	
 	@CacheEvict(value="plans", key="#plan.voice.concat('|').concat(#plan.data).concat('|').concat(#plan.traveler)" )
-	public void deletePlan(Integer id) {		
+	public void deletePlan(Plan plan) {		
 		logger.info("Invoked SimpleService.deletePlan");		
-		planRepository.delete(id);
+		planRepository.delete(plan);
 	}
 }

@@ -32,6 +32,13 @@ public class SimpleController {
     	return "Welcome to Cache POC Test";
     }
     
+    @RequestMapping(method=RequestMethod.POST, value="/new")
+    @ResponseBody Plan addPlan(@RequestBody Plan plan) {
+    	//return bookRepository.getByIsbn("new book").getTitle();
+    	logger.info("Invoked SimpleController.addPlan :"+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
+    	return service.addPlan(plan);
+    }
+    
     @RequestMapping(method=RequestMethod.POST, value="/plan")
     @ResponseBody Plan getPlan(@RequestBody Plan plan) {
     	//return bookRepository.getByIsbn("new book").getTitle();
@@ -43,15 +50,16 @@ public class SimpleController {
     @ResponseBody Plan updatePlan(@PathVariable Integer id, @RequestBody Plan plan) {
     	//return bookRepository.getByIsbn("new book").getTitle();
     	logger.info("Invoked SimpleController.updatePlan :"+id+ " "+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
-    	plan.setId(id);
+    	if (id!=null)	plan.setId(id);
     	return service.updatePlan(plan);
     }
     
     @RequestMapping(method=RequestMethod.DELETE, value="/plan/{id}")
-    void deletePlan(@PathVariable Integer id) {
+    void deletePlan(@PathVariable Integer id, @RequestBody Plan plan) {
     	//return bookRepository.getByIsbn("new book").getTitle();
-    	logger.info("Invoked SimpleController.deletePlan :"+id);
-    	service.deletePlan(id);
+    	logger.info("Invoked SimpleController.deletePlan :"+id+ " "+plan.getVoice()+" "+plan.getData()+" "+plan.getTraveler()+" "+plan.getComboPlan());
+    	plan.setId(id);
+    	service.deletePlan(plan);
     }
 
 }
